@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{pageTitle}}</title>
+    <meta name="description" content="{{pageDescription}}">
+
+    <link rel="icon" type="image/x-icon" href="/img/favicon/favicon.ico"/>
+    <link rel="icon" type="image/png" href="/img/favicon/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="/img/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/img/favicon/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/img/favicon/favicon-512x512.png" sizes="512x512">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
+    <meta name="theme-color" content="#2464aa">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    {% set css %}{% include "css/mode.css" %}{% endset %}
+    <style>{{ css | cssmin | safe }}</style>
+  </head>
+  <body>
+    <header role="banner" class="m-header">
+      <p class="m-header__logo">
+        <a href="/" class="td-n">MODE</a>
+      </p>
+      <nav role="navigation" id="navigation" class="m-header__navigation">
+        <a href="/about" class="m-header__navigation__link">About</a>
+        <a href="/events-staff" class="m-header__navigation__link">Events Staff</a>
+        <a href="/brand-ambassadors" class="m-header__navigation__link">Brand Ambassadors</a>
+        <a href="/performance" class="m-header__navigation__link">Performance</a>
+        <a href="/contact" class="m-header__navigation__link">Contact</a>
+      </nav>
+      <button id="menu-button" class="m-header__navigation__menu-toggle">&#9776;</button>
+    </header>
+    <main role="main" class="m-body m-body--{{ pageClass | safe }}">
+      {{ content | safe }}
+    </main>
+    <script>
+    (() => {
+      'use strict'
+      const menuButton = document.getElementById('menu-button');
+      const navigation = document.getElementById('navigation');
+      menuButton.addEventListener('click', () => {
+        navigation.classList.toggle('open');
+      });
+    })();
+    </script>
+  </body>
+</html>
